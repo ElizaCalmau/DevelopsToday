@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ROUTES } from '../utils/ROUTES';
 export default function Button({ text, isDisabled, makeId, year }) {
-  console.log(isDisabled);
   return (
     <Link href={ROUTES.result(makeId, year)}>
       <button
