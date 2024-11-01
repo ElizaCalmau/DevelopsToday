@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function fetchDetails(makeId, year) {
   const result = await fetch(
-    `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
+    `${process.env.NEXT_PUBLIC_MODEL_API}/makeId/${makeId}/modelyear/${year}?format=json`
   ).then((res) => res.json());
   return result;
 }

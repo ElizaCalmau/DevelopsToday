@@ -13,7 +13,6 @@ const useFetchVehicleMakes = () => {
         const data = await response.json();
         const { Results } = data;
         setMakes(Results);
-        console.log('data', Results);
       } catch (error) {
         console.error(error);
         setLoading(false);
