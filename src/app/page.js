@@ -10,10 +10,15 @@ import Button from './components/Button';
 import useHandleSelectChange from './hooks/useHandleSelectChange';
 
 export default function Home() {
-  const { handleMakeChange, handleYearChange, isDisabled } =
-    useHandleSelectChange();
   const { makes, loading } = fetchVehicleMakes();
-  const makeNames = makes.map((make) => make.MakeName);
+  const {
+    handleMakeChange,
+    handleYearChange,
+    selectedMake,
+    selectedYear,
+    isDisabled,
+    id,
+  } = useHandleSelectChange(makes);
 
   const modelYears = getModelYears();
 
@@ -25,7 +30,7 @@ export default function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <div className="flex justify-between w-full gap-4">
           <Select
-            options={makeNames}
+            options={makes}
             title="Please select a vehicle Make"
             onChange={handleMakeChange}
           />
@@ -35,7 +40,12 @@ export default function Home() {
             onChange={handleYearChange}
           />
         </div>
-        <Button text="Next" isDisabled={isDisabled} />
+        <Button
+          text="Next"
+          isDisabled={isDisabled}
+          id={id}
+          year={selectedYear}
+        />
       </main>
     </div>
   );
