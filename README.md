@@ -1,6 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Vehicle Selector Application
 
-## Getting Started
+## Overview
+
+The Vehicle Selector Application is a web app that allows users to select a vehicle make and model year. Based on the selected make and year, users can view specific vehicle models. The app fetches vehicle data from the National Highway Traffic Safety Administration (NHTSA) API.
+
+## Features
+
+- Select vehicle makes from a dropdown.
+- Select model years ranging from 2015 to the current year.
+- Navigate to a results page displaying the selected vehicle make and model year.
+- Responsive design using Tailwind CSS.
+
+### Getting Started
 
 First, run the development server:
 
@@ -34,5 +45,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-Init
