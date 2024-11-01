@@ -1,3 +1,4 @@
+import Vehicle from '@/app/components/Vehicle';
 import getModelYears from '@/app/utils/getModelYears';
 
 export async function generateStaticParams() {
@@ -22,12 +23,25 @@ export async function fetchDetails(makeId, year) {
   const result = await fetch(
     `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
   ).then((res) => res.json());
-  console.log('res', result);
   return result;
 }
 
-export default function ResultPage({ params }) {
+export default async function ResultPage({ params }) {
   const { makeId, year } = params;
-  fetchDetails(makeId, year);
-  console.log(makeId, year);
+  const response = await fetchDetails(makeId, year);
+  const { Results } = response;
+  console.log('data', Results);
+  return (
+    <div className="flex flex-wrap gap-4 justify-center">
+      {Results.map((vehicle) => {
+        return (
+          <Vehicle
+            key={vehicle.Make_ID}
+            name={vehicle.Make_Name}
+            model={vehicle.Model_Name}
+          />
+        );
+      })}
+    </div>
+  );
 }
