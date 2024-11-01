@@ -4,8 +4,14 @@ import fetchVehicleMakes from './hooks/useFetchVehicleMakes';
 import getModelYears from './utils/getModelYears';
 import Loading from './components/loading';
 import Select from './components/Select';
+import { useState } from 'react';
+import Link from 'next/link';
+import Button from './components/Button';
+import useHandleSelectChange from './hooks/useHandleSelectChange';
 
 export default function Home() {
+  const { handleMakeChange, handleYearChange, isDisabled } =
+    useHandleSelectChange();
   const { makes, loading } = fetchVehicleMakes();
   const makeNames = makes.map((make) => make.MakeName);
 
@@ -17,8 +23,19 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Select options={makeNames} title="Please select a vehicle Make" />
-        <Select options={modelYears} title="Please select a year" />
+        <div className="flex justify-between w-full gap-4">
+          <Select
+            options={makeNames}
+            title="Please select a vehicle Make"
+            onChange={handleMakeChange}
+          />
+          <Select
+            options={modelYears}
+            title="Please select a year"
+            onChange={handleYearChange}
+          />
+        </div>
+        <Button text="Next" isDisabled={isDisabled} />
       </main>
     </div>
   );
