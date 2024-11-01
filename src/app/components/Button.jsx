@@ -1,9 +1,9 @@
 import Link from 'next/link';
-
-export default function Button({ text, isDisabled }) {
+import { ROUTES } from '../utils/ROUTES';
+export default function Button({ text, isDisabled, id, year }) {
   console.log(isDisabled);
   return (
-    <Link href="/select">
+    <Link href={ROUTES.result(id, year)}>
       <button
         className={`mt-4 px-4 py-2 rounded-lg text-white font-semibold transition duration-200 
       ${
